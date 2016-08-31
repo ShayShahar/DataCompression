@@ -4,3 +4,4 @@ Source/DataCompression.Hoffman.Decoder/obj/Debug/
 Source/DataCompression.Hoffman.Encoder/bin/
 Source/DataCompression.Hoffman.Encoder/obj/
 Source/DataCompression.Arithmetic.Decoder/bin/
+*.suo
