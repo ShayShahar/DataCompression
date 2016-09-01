@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace DataCompression.Arithmetic.Encoder
 {
@@ -10,6 +11,8 @@ namespace DataCompression.Arithmetic.Encoder
     {
         static void Main(string[] args)
         {
+
         }
+
     }
 }
