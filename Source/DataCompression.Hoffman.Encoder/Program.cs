@@ -6,6 +6,7 @@ namespace DataCompression.Hoffman.Encoder
     class Program
     {
         private static string s_path = @"C:\Users\shays\Desktop\input.txt";
+        private static string s_savePath = @"C:\Users\shays\Desktop\compressed.txt";
         private static string s_alphatbet = "0123456789";
 
         static void Main(string[] args)
@@ -26,6 +27,10 @@ namespace DataCompression.Hoffman.Encoder
 
                 var encoder = new Encoder(code, alphabet);
                 encoder.Init();
+                encoder.Encode();
+                encoder.CompressData(s_savePath);
+
+                Console.WriteLine("Text encoded. Output file is located at: {0}", s_savePath);
             }
             catch (FileNotFoundException)
             {
@@ -35,7 +40,6 @@ namespace DataCompression.Hoffman.Encoder
             {
                 Console.WriteLine("Input file should contain only characters from alphabet {0}", s_alphatbet);
             }
-
 
             Console.ReadKey();
         }

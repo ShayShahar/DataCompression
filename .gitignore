@@ -6,3 +6,4 @@ Source/DataCompression.Hoffman.Encoder/obj/
 Source/DataCompression.Arithmetic.Decoder/bin/
 *.suo
 Source/DataCompression.Arithmetic.Encoder/bin/
+Source/DataCompression.Hoffman.Decoder/bin/
