@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using System.Text;
 
 // ReSharper disable InconsistentNaming
 
@@ -95,7 +96,7 @@ namespace DataCompression.Hoffman.Encoder
 
         }
 
-        public void CompressData(string p_path)
+        public void CompressData(string p_pathTxt, string p_pathBin)
         {
             string binaryCoded = "";
 
@@ -105,9 +106,13 @@ namespace DataCompression.Hoffman.Encoder
                 binaryCoded = binaryCoded + findCoded.Code;
             }
 
-            var textWriter = new StreamWriter(p_path,false);
+            var textWriter = new StreamWriter(p_pathTxt,false);
             textWriter.WriteLine(binaryCoded);
             textWriter.Close();
+
+            var binWriter = new BinaryWriter(new FileStream(p_pathBin,FileMode.Create));
+            binWriter.Write(binaryCoded);
+            binWriter.Close();
         }
 
         private void GetCode(Coded p_coded)

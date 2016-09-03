@@ -6,7 +6,8 @@ namespace DataCompression.Hoffman.Encoder
     class Program
     {
         private static string s_path = @"C:\Users\shays\Desktop\input.txt";
-        private static string s_savePath = @"C:\Users\shays\Desktop\compressed.txt";
+        private static string s_savePathText = @"C:\Users\shays\Desktop\compressed.txt";
+        private static string s_savePathBin = @"C:\Users\shays\Desktop\compressed.bin";
         private static string s_alphatbet = "0123456789";
 
         static void Main(string[] args)
@@ -28,9 +29,9 @@ namespace DataCompression.Hoffman.Encoder
                 var encoder = new Encoder(code, alphabet);
                 encoder.Init();
                 encoder.Encode();
-                encoder.CompressData(s_savePath);
+                encoder.CompressData(s_savePathText, s_savePathBin);
 
-                Console.WriteLine("Text encoded. Output file is located at: {0}", s_savePath);
+                Console.WriteLine("Text encoded. Output file is located at: {0}, {1}", s_savePathText, s_savePathBin);
             }
             catch (FileNotFoundException)
             {
