@@ -9,3 +9,5 @@ Source/DataCompression.Arithmetic.Encoder/bin/
 Source/DataCompression.Hoffman.Decoder/bin/
 Source/DataCompression.Hoffman.Common/bin/
 Source/DataCompression.Hoffman.Common/obj/
+Source/DataCompression.Application/obj/
+Source/DataCompression.Application/bin/

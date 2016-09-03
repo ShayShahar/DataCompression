@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using System.Text;
 using DataCompression.Hoffman.Common;
 
 // ReSharper disable InconsistentNaming
 
 namespace DataCompression.Hoffman.Encoder
 {
-    internal class Encoder
+    public class Encoder
     {
         #region [Properties]
 
@@ -26,7 +27,7 @@ namespace DataCompression.Hoffman.Encoder
         #endregion [Members]
 
         #region [C'tor]
-        internal Encoder(string p_code, Alphabet p_alphabet)
+        public Encoder(string p_code, Alphabet p_alphabet)
         {
             m_code = p_code;
             m_alphabet = p_alphabet;
@@ -42,7 +43,7 @@ namespace DataCompression.Hoffman.Encoder
         /// <summary>
         /// Initialize input file 
         /// </summary>
-        internal void Init()
+        public void Init()
         {
             m_charNum = m_code.Length;
 
@@ -60,7 +61,7 @@ namespace DataCompression.Hoffman.Encoder
             CountProbabilities();
         }
 
-        internal void Encode()
+        public void Encode()
         {
             m_coded.Sort((x,y) => x.Probability.CompareTo(y.Probability));
             CodedTree.Sort((x, y) => x.Probability.CompareTo(y.Probability));
@@ -125,7 +126,7 @@ namespace DataCompression.Hoffman.Encoder
             textWriter.Close();
 
             var fs = new FileStream(p_pathBin, FileMode.Create);
-            var binWriter = new BinaryWriter(fs);
+            var binWriter = new BinaryWriter(fs,Encoding.ASCII);
             binWriter.Write(binaryCoded);
             binWriter.Close();
         }

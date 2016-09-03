@@ -1,9 +1,13 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using DataCompression.Hoffman.Common;
+using DataCompression.Hoffman.Encoder;
 using DataCompression.Hoffman.Decoder;
+using Decoder = DataCompression.Hoffman.Decoder.Decoder;
+using Encoder = DataCompression.Hoffman.Encoder.Encoder;
 
-namespace DataCompression.Hoffman.Encoder
+namespace DataCompression.Application
 {
     class Program
     {
@@ -35,7 +39,7 @@ namespace DataCompression.Hoffman.Encoder
 
                 Console.WriteLine("Text encoded. Output file is located at: {0}, {1}", s_savePathText, s_savePathBin);
 
-                Decoder.Decoder decoder = new Decoder.Decoder(encoder.CodedTree);
+                Decoder decoder = new Decoder(encoder.CodedTree);
                 decoder.DecodeTextFile(s_savePathText);
                 decoder.DecodeBinFile(s_savePathBin);
 
@@ -51,6 +55,5 @@ namespace DataCompression.Hoffman.Encoder
 
             Console.ReadKey();
         }
-
     }
 }
