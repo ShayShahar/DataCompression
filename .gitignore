@@ -7,3 +7,5 @@ Source/DataCompression.Arithmetic.Decoder/bin/
 *.suo
 Source/DataCompression.Arithmetic.Encoder/bin/
 Source/DataCompression.Hoffman.Decoder/bin/
+Source/DataCompression.Hoffman.Common/bin/
+Source/DataCompression.Hoffman.Common/obj/

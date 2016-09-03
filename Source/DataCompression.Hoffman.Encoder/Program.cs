@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using DataCompression.Hoffman.Common;
+using DataCompression.Hoffman.Decoder;
 
 namespace DataCompression.Hoffman.Encoder
 {
@@ -32,6 +34,11 @@ namespace DataCompression.Hoffman.Encoder
                 encoder.CompressData(s_savePathText, s_savePathBin);
 
                 Console.WriteLine("Text encoded. Output file is located at: {0}, {1}", s_savePathText, s_savePathBin);
+
+                Decoder.Decoder decoder = new Decoder.Decoder(encoder.CodedTree);
+                decoder.DecodeTextFile(s_savePathText);
+                decoder.DecodeBinFile(s_savePathBin);
+
             }
             catch (FileNotFoundException)
             {

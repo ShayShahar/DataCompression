@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 // ReSharper disable InconsistentNaming
 
-namespace DataCompression.Hoffman.Encoder
+namespace DataCompression.Hoffman.Common
 {
-    class Alphabet
+    public class Alphabet
     {
         public string Supported { get; set; }
         
