@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using System.IO.Compression;
 using System.Text;
 using DataCompression.Hoffman.Common;
 // ReSharper disable InconsistentNaming
@@ -20,8 +21,11 @@ namespace DataCompression.Hoffman.Decoder
         public void DecodeBinFile(string p_path)
         {
             var fs = new FileStream(p_path, FileMode.Open);
-            var bin = new BinaryReader(fs, Encoding.ASCII);
-            string code = bin.ReadString();
+            var gzip = new GZipStream(fs, CompressionMode.Decompress);
+            //var bin = new BinaryReader(fs, Encoding.ASCII);
+            //string code = bin.ReadString();
+            StreamReader reader = new StreamReader(gzip);
+            string code = reader.ReadToEnd();
             DecodeBinaryString(code);
         }
 

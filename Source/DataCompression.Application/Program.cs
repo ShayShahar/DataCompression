@@ -1,9 +1,6 @@
 ﻿using System;
 using System.IO;
-using System.Text;
 using DataCompression.Hoffman.Common;
-using DataCompression.Hoffman.Encoder;
-using DataCompression.Hoffman.Decoder;
 using Decoder = DataCompression.Hoffman.Decoder.Decoder;
 using Encoder = DataCompression.Hoffman.Encoder.Encoder;
 

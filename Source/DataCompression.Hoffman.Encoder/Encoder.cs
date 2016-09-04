@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using System.IO.Compression;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using DataCompression.Hoffman.Common;
 
@@ -126,9 +128,16 @@ namespace DataCompression.Hoffman.Encoder
             textWriter.Close();
 
             var fs = new FileStream(p_pathBin, FileMode.Create);
-            var binWriter = new BinaryWriter(fs,Encoding.ASCII);
-            binWriter.Write(binaryCoded);
-            binWriter.Close();
+            var gzip = new GZipStream(fs, CompressionMode.Compress);
+            //var binWriter = new BinaryWriter(fs);
+            //BinaryFormatter formatter = new BinaryFormatter();
+            //formatter.Serialize(fs,Encoding.ASCII.GetBytes(binaryCoded));
+            //binWriter.Write(binaryCoded);
+            //binWriter.Close();
+            byte[] bin = Encoding.ASCII.GetBytes(binaryCoded);
+            gzip.Write(bin, 0, bin.Length);
+            gzip.Close();
+            fs.Close();
         }
 
         #endregion [Public Methods]
