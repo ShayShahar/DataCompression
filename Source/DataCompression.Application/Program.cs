@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using DataCompression.Hoffman.Common;
+using DataCompression.Arithmetic.Decoder;
+using DataCompression.Arithmetic.Encoder;
+using DataCompression.Common;
 using HuffmanDecoder = DataCompression.Hoffman.Decoder.HuffmanDecoder;
 using HuffmanEncoder = DataCompression.Hoffman.Encoder.HuffmanEncoder;
 
@@ -31,18 +33,34 @@ namespace DataCompression.Application
                     throw new InvalidDataException();
                 }
 
-                var encoder = new HuffmanEncoder(code, alphabet);
-                encoder.Init();
-                encoder.StaticProbabilities();
+                //var encoder = new HuffmanEncoder(code, alphabet);
+                //encoder.Init();
+                //encoder.StaticProbabilities();
+                //encoder.Encode();
+                //int totalBits;
+                //encoder.CompressData(s_savePathText, s_savePathBin, out totalBits);
+
+                //Console.WriteLine("Text encoded. Output file is located at: {0}, {1}", s_savePathText, s_savePathBin);
+
+                //HuffmanDecoder decoder = new HuffmanDecoder(encoder.CodedTree);
+                //decoder.DecodeBinFile(s_savePathBin, totalBits, s_savePathOutput);
+
+
+                var intervals = new Dictionary<char, Interval>
+            {
+                {'1', new Interval(0, 0.8)}, {'2', new Interval(0.8,0.82)},
+                {'3', new Interval(0.82,1)}
+            };
+
+                var encoder = new ArithmeticEncoder(code, alphabet);
                 encoder.Encode();
                 int totalBits;
-                encoder.CompressData(s_savePathText, s_savePathBin, out totalBits);
+                encoder.CompressData(s_savePathText,s_savePathBin, out totalBits);
 
-                Console.WriteLine("Text encoded. Output file is located at: {0}, {1}", s_savePathText, s_savePathBin);
+                var decoder = new ArithmeticDecoder(intervals, encoder.m_binaryCode);
+                decoder.DecodeTxtFile();
 
-                HuffmanDecoder decoder = new HuffmanDecoder(encoder.CodedTree);
-                decoder.DecodeBinFile(s_savePathBin, totalBits, s_savePathOutput);
-               
+
             }
             catch (FileNotFoundException)
             {

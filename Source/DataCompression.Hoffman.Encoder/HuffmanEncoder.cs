@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.IO;
-using DataCompression.Hoffman.Common;
+using DataCompression.Common;
 
 namespace DataCompression.Hoffman.Encoder
 {

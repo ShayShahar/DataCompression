@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataCompression.Hoffman.Dec
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataCompression.Hoffman.Encoder", "Source\DataCompression.Hoffman.Encoder\DataCompression.Hoffman.Encoder.csproj", "{4BA8508B-FE50-42A4-AECA-4C4BC477BBE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataCompression.Hoffman.Common", "Source\DataCompression.Hoffman.Common\DataCompression.Hoffman.Common.csproj", "{CAFE57DF-2089-41EF-8858-83A507F0EBB3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataCompression.Common", "Source\DataCompression.Hoffman.Common\DataCompression.Common.csproj", "{CAFE57DF-2089-41EF-8858-83A507F0EBB3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataCompression.Application", "Source\DataCompression.Application\DataCompression.Application.csproj", "{53B8532C-E2DC-4EB1-BDEB-4C12B8ED44CA}"
 EndProject

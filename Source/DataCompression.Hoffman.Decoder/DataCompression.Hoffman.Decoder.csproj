@@ -46,7 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BinaryInputStream.cs" />
     <Compile Include="HuffmanDecoder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -54,9 +53,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataCompression.Hoffman.Common\DataCompression.Hoffman.Common.csproj">
+    <ProjectReference Include="..\DataCompression.Hoffman.Common\DataCompression.Common.csproj">
       <Project>{cafe57df-2089-41ef-8858-83a507f0ebb3}</Project>
-      <Name>DataCompression.Hoffman.Common</Name>
+      <Name>DataCompression.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

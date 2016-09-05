@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace DataCompression.Hoffman.Decoder
+namespace DataCompression.Common
 {
     public class BinaryInputStream
     {

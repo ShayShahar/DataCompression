@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataCompression.Hoffman.Common
+namespace DataCompression.Common
 {
     public class Alphabet
     {

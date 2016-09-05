@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
 
-namespace DataCompression.Hoffman.Encoder
+namespace DataCompression.Common
 {
-    class BinaryOutputStream
+    public class BinaryOutputStream
     {
         private readonly StreamWriter m_fileStream;
         private int m_counter;

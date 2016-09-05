@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using DataCompression.Hoffman.Common;
+using DataCompression.Common;
 
 namespace DataCompression.Hoffman.Decoder
 {
