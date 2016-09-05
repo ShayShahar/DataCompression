@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
@@ -33,7 +34,7 @@ namespace DataCompression.Hoffman.Encoder
         {
             m_code = p_code;
             m_alphabet = p_alphabet;
-            m_coded = new List<TreeNode>(p_alphabet.Supported.Length);
+            m_coded = new List<TreeNode>(p_alphabet.Supported.Count);
             CodedTree = new List<TreeNode>();
 
         }
@@ -59,8 +60,6 @@ namespace DataCompression.Hoffman.Encoder
                 m_coded.Add(coded);
                 CodedTree.Add(coded);
             }
-
-            CountProbabilities();
         }
 
         public void Encode()
@@ -113,7 +112,7 @@ namespace DataCompression.Hoffman.Encoder
             }
         }
 
-        public void CompressData(string p_pathTxt, string p_pathBin)
+        public void CompressData(string p_pathTxt, string p_pathBin, out int p_totalBits)
         {
             string binaryCoded = "";
 
@@ -127,21 +126,25 @@ namespace DataCompression.Hoffman.Encoder
             textWriter.WriteLine(binaryCoded);
             textWriter.Close();
 
-            var fs = new FileStream(p_pathBin, FileMode.Create);
-            var gzip = new GZipStream(fs, CompressionMode.Compress);
-            //var binWriter = new BinaryWriter(fs);
-            //BinaryFormatter formatter = new BinaryFormatter();
-            //formatter.Serialize(fs,Encoding.ASCII.GetBytes(binaryCoded));
-            //binWriter.Write(binaryCoded);
-            //binWriter.Close();
-            byte[] bin = Encoding.ASCII.GetBytes(binaryCoded);
-            gzip.Write(bin, 0, bin.Length);
-            gzip.Close();
-            fs.Close();
+            var binary = new BinaryOutputStream(p_pathBin);
+            binary.Write(binaryCoded, out p_totalBits);
+            binary.Close();
+
+            //var fs = new FileStream(p_pathBin, FileMode.Create);
+            //var gzip = new GZipStream(fs, CompressionMode.Compress);
+            ////var binWriter = new BinaryWriter(fs);
+            ////BinaryFormatter formatter = new BinaryFormatter();
+            ////formatter.Serialize(fs,Encoding.ASCII.GetBytes(binaryCoded));
+            ////binWriter.Write(binaryCoded);
+            ////binWriter.Close();
+            //byte[] bin = Encoding.ASCII.GetBytes(binaryCoded);
+            //gzip.Write(bin, 0, bin.Length);
+            //gzip.Close();
+            //fs.Close();
         }
 
         #endregion [Public Methods]
-
+        
         #region [Non - Public Methods]
 
         private void GetCode(TreeNode p_coded)
@@ -151,6 +154,7 @@ namespace DataCompression.Hoffman.Encoder
 
             while (parent.Parent != null)
             {
+
                 if (parent.Parent.Left.Equals(parent))
                 {
                     code = "0" + code;
@@ -169,12 +173,21 @@ namespace DataCompression.Hoffman.Encoder
         /// <summary>
         /// Calculate input string probabilities
         /// </summary
-        private void CountProbabilities()
+        public void CountProbabilities()
         {
-            for (var i = 0; i < m_alphabet.Supported.Length; i++)
+            for (var i = 0; i < m_alphabet.Supported.Count; i++)
             {
                 m_coded[i].Probability = (double)m_coded[i].Count / m_charNum;
             }
+        }
+
+        public void StaticProbabilities()
+        {
+            foreach (var t in m_coded)
+            {
+                t.Probability = (double) 1/m_alphabet.Supported.Count;
+            }
+
         }
 
         #endregion [Non - Public Methods]

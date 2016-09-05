@@ -18,14 +18,16 @@ namespace DataCompression.Hoffman.Decoder
             m_codedTree = p_codedTree;
         }
 
-        public void DecodeBinFile(string p_path)
+        public void DecodeBinFile(string p_path, int p_totalBits)
         {
-            var fs = new FileStream(p_path, FileMode.Open);
-            var gzip = new GZipStream(fs, CompressionMode.Decompress);
-            //var bin = new BinaryReader(fs, Encoding.ASCII);
-            //string code = bin.ReadString();
-            StreamReader reader = new StreamReader(gzip);
-            string code = reader.ReadToEnd();
+            //var fs = new FileStream(p_path, FileMode.Open);
+            //var gzip = new GZipStream(fs, CompressionMode.Decompress);
+            ////var bin = new BinaryReader(fs, Encoding.ASCII);
+            ////string code = bin.ReadString();
+            //StreamReader reader = new StreamReader(gzip);
+            //string code = reader.ReadToEnd();
+            BinaryInputStream bin = new BinaryInputStream(p_path, p_totalBits);
+            var code = bin.ReadAllText();
             DecodeBinaryString(code);
         }
 
