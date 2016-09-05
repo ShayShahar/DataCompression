@@ -12,6 +12,7 @@ namespace DataCompression.Application
         private static string s_path = @"C:\Users\shays\Desktop\input.txt";
         private static string s_savePathText = @"C:\Users\shays\Desktop\compressed.txt";
         private static string s_savePathBin = @"C:\Users\shays\Desktop\compressed.bin";
+        private static string s_savePathOutput = @"C:\Users\shays\Desktop\output.txt";
         private static readonly List<char> s_alphabet = new List<char>() {'1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
 
         static void Main(string[] args)
@@ -40,8 +41,7 @@ namespace DataCompression.Application
                 Console.WriteLine("Text encoded. Output file is located at: {0}, {1}", s_savePathText, s_savePathBin);
 
                 Decoder decoder = new Decoder(encoder.CodedTree);
-                decoder.DecodeTextFile(s_savePathText);
-                decoder.DecodeBinFile(s_savePathBin, totalBits);
+                decoder.DecodeBinFile(s_savePathBin, totalBits, s_savePathOutput);
                
             }
             catch (FileNotFoundException)

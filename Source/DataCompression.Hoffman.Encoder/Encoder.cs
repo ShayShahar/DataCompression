@@ -1,14 +1,7 @@
-﻿using System;
-using System.CodeDom;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.IO;
-using System.IO.Compression;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
 using DataCompression.Hoffman.Common;
-
-// ReSharper disable InconsistentNaming
 
 namespace DataCompression.Hoffman.Encoder
 {
@@ -69,18 +62,18 @@ namespace DataCompression.Hoffman.Encoder
 
             while (CodedTree.Count > 2)
             {
-                var min_1 = CodedTree[0];
-                var min_2 = CodedTree[1];
+                var min1 = CodedTree[0];
+                var min2 = CodedTree[1];
 
                 var newCoded = new TreeNode
                 {
-                    Probability = min_1.Probability + min_2.Probability,
-                    Left = min_1,
-                    Right = min_2
+                    Probability = min1.Probability + min2.Probability,
+                    Left = min1,
+                    Right = min2
                 };
 
-                min_1.Parent = newCoded;
-                min_2.Parent = newCoded;
+                min1.Parent = newCoded;
+                min2.Parent = newCoded;
 
                 CodedTree.RemoveAt(1);
                 CodedTree.RemoveAt(0);
@@ -88,18 +81,18 @@ namespace DataCompression.Hoffman.Encoder
                 CodedTree.Sort((x, y) => x.Probability.CompareTo(y.Probability));
             }
 
-            var min_11 = CodedTree[0];
-            var min_21 = CodedTree[1];
+            var min11 = CodedTree[0];
+            var min21 = CodedTree[1];
 
             var lastCoded = new TreeNode
             {
-                Probability = min_11.Probability + min_21.Probability,
-                Left = min_11,
-                Right = min_21
+                Probability = min11.Probability + min21.Probability,
+                Left = min11,
+                Right = min21
             };
 
-            min_11.Parent = lastCoded;
-            min_21.Parent = lastCoded;
+            min11.Parent = lastCoded;
+            min21.Parent = lastCoded;
 
             CodedTree.RemoveAt(1);
             CodedTree.RemoveAt(0);
@@ -130,17 +123,6 @@ namespace DataCompression.Hoffman.Encoder
             binary.Write(binaryCoded, out p_totalBits);
             binary.Close();
 
-            //var fs = new FileStream(p_pathBin, FileMode.Create);
-            //var gzip = new GZipStream(fs, CompressionMode.Compress);
-            ////var binWriter = new BinaryWriter(fs);
-            ////BinaryFormatter formatter = new BinaryFormatter();
-            ////formatter.Serialize(fs,Encoding.ASCII.GetBytes(binaryCoded));
-            ////binWriter.Write(binaryCoded);
-            ////binWriter.Close();
-            //byte[] bin = Encoding.ASCII.GetBytes(binaryCoded);
-            //gzip.Write(bin, 0, bin.Length);
-            //gzip.Close();
-            //fs.Close();
         }
 
         #endregion [Public Methods]
@@ -187,7 +169,6 @@ namespace DataCompression.Hoffman.Encoder
             {
                 t.Probability = (double) 1/m_alphabet.Supported.Count;
             }
-
         }
 
         #endregion [Non - Public Methods]

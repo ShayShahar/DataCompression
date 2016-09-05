@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
-using System.IO.Compression;
-using System.Text;
 using DataCompression.Hoffman.Common;
-// ReSharper disable InconsistentNaming
 
 namespace DataCompression.Hoffman.Decoder
 {
@@ -18,26 +14,30 @@ namespace DataCompression.Hoffman.Decoder
             m_codedTree = p_codedTree;
         }
 
-        public void DecodeBinFile(string p_path, int p_totalBits)
+        public void DecodeBinFile(string p_inputPath, int p_totalBits, string p_savePathOutput)
         {
-            //var fs = new FileStream(p_path, FileMode.Open);
-            //var gzip = new GZipStream(fs, CompressionMode.Decompress);
-            ////var bin = new BinaryReader(fs, Encoding.ASCII);
-            ////string code = bin.ReadString();
-            //StreamReader reader = new StreamReader(gzip);
-            //string code = reader.ReadToEnd();
-            BinaryInputStream bin = new BinaryInputStream(p_path, p_totalBits);
+            BinaryInputStream bin = new BinaryInputStream(p_inputPath, p_totalBits);
             var code = bin.ReadAllText();
-            DecodeBinaryString(code);
+            string output = DecodeBinaryString(code);
+            FileStream fs = new FileStream(p_savePathOutput, FileMode.Create);
+            StreamWriter sw = new StreamWriter(fs);
+            sw.Write(output);
+            sw.Close();
+            fs.Close();
         }
 
-        public void DecodeTextFile(string p_path)
+        public void DecodeTextFile(string p_path, string p_savePathOutput)
         {
             string code = File.ReadAllText(p_path);
-            DecodeBinaryString(code);
+            string output = DecodeBinaryString(code);
+            FileStream fs = new FileStream(p_savePathOutput, FileMode.Create);
+            StreamWriter sw = new StreamWriter(fs);
+            sw.Write(output);
+            sw.Close();
+            fs.Close();
         }
 
-        private void DecodeBinaryString(string p_binary)
+        private string DecodeBinaryString(string p_binary)
         {
             string output = "";
 
@@ -56,7 +56,7 @@ namespace DataCompression.Hoffman.Decoder
                 }
             }
 
-            Console.WriteLine(output);
+            return output;
         }
     }
 }
