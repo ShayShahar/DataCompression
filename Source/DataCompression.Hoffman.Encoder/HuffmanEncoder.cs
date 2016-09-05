@@ -5,7 +5,7 @@ using DataCompression.Hoffman.Common;
 
 namespace DataCompression.Hoffman.Encoder
 {
-    public class Encoder
+    public class HuffmanEncoder
     {
         #region [Properties]
 
@@ -23,7 +23,7 @@ namespace DataCompression.Hoffman.Encoder
         #endregion [Members]
 
         #region [C'tor]
-        public Encoder(string p_code, Alphabet p_alphabet)
+        public HuffmanEncoder(string p_code, Alphabet p_alphabet)
         {
             m_code = p_code;
             m_alphabet = p_alphabet;

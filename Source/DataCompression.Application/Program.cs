@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using System.IO;
 using DataCompression.Hoffman.Common;
-using Decoder = DataCompression.Hoffman.Decoder.Decoder;
-using Encoder = DataCompression.Hoffman.Encoder.Encoder;
+using HuffmanDecoder = DataCompression.Hoffman.Decoder.HuffmanDecoder;
+using HuffmanEncoder = DataCompression.Hoffman.Encoder.HuffmanEncoder;
 
 namespace DataCompression.Application
 {
     class Program
     {
-        private static string s_path = @"C:\Users\shays\Desktop\input.txt";
-        private static string s_savePathText = @"C:\Users\shays\Desktop\compressed.txt";
-        private static string s_savePathBin = @"C:\Users\shays\Desktop\compressed.bin";
-        private static string s_savePathOutput = @"C:\Users\shays\Desktop\output.txt";
+        private static readonly string s_path = Directory.GetCurrentDirectory() + "\\input.txt";
+        private static readonly string s_savePathText = Directory.GetCurrentDirectory() + "\\compressed.txt";
+        private static readonly string s_savePathBin = Directory.GetCurrentDirectory() + "\\compressed.bin";
+        private static readonly string s_savePathOutput = Directory.GetCurrentDirectory() + "\\output.txt";
         private static readonly List<char> s_alphabet = new List<char>() {'1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
-
+        
         static void Main(string[] args)
         {
             try
@@ -31,7 +31,7 @@ namespace DataCompression.Application
                     throw new InvalidDataException();
                 }
 
-                var encoder = new Encoder(code, alphabet);
+                var encoder = new HuffmanEncoder(code, alphabet);
                 encoder.Init();
                 encoder.StaticProbabilities();
                 encoder.Encode();
@@ -40,7 +40,7 @@ namespace DataCompression.Application
 
                 Console.WriteLine("Text encoded. Output file is located at: {0}, {1}", s_savePathText, s_savePathBin);
 
-                Decoder decoder = new Decoder(encoder.CodedTree);
+                HuffmanDecoder decoder = new HuffmanDecoder(encoder.CodedTree);
                 decoder.DecodeBinFile(s_savePathBin, totalBits, s_savePathOutput);
                
             }

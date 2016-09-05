@@ -5,11 +5,11 @@ using DataCompression.Hoffman.Common;
 
 namespace DataCompression.Hoffman.Decoder
 {
-    public class Decoder
+    public class HuffmanDecoder
     {
         private readonly List<TreeNode> m_codedTree; 
 
-        public Decoder(List<TreeNode> p_codedTree)
+        public HuffmanDecoder(List<TreeNode> p_codedTree)
         {
             m_codedTree = p_codedTree;
         }
