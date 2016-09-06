@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using DataCompression.Common;
 
-namespace DataCompression.Arithmetic.Encoder
+namespace DataCompression.Arithmetic
 {
     public class ArithmeticEncoder
     {
@@ -16,42 +13,26 @@ namespace DataCompression.Arithmetic.Encoder
         private Dictionary<char, Interval> m_intervals;
         public string m_binaryCode;
 
-        public ArithmeticEncoder(string p_code, Alphabet p_alphabet)
+        public ArithmeticEncoder(string p_code, Alphabet p_alphabet, Dictionary<char, Interval> p_intervals)
         {
             m_binaryCode = "";
             m_charNum = p_code.Length;
             m_code = p_code;
             m_alphabet = p_alphabet;
-
-            //m_intervals = new Dictionary<char, Interval>
-            //{
-            //    {'1', new Interval(0, 0.1)}, {'2', new Interval(0.1,0.2)},
-            //    {'3', new Interval(0.2,0.3)}, {'4', new Interval(0.3,0.4)},
-            //    {'5', new Interval(0.4,0.5)}, {'6', new Interval(0.5,0.6)},
-            //    {'7', new Interval(0.6,0.7)}, {'8', new Interval(0.7,0.8)},
-            //    {'9', new Interval(0.8,0.9)}, {'0', new Interval(0.9,1)}
-            //};
-
-            m_intervals = new Dictionary<char, Interval>
-            {
-                {'1', new Interval(0, 0.8)}, {'2', new Interval(0.8,0.82)},
-                {'3', new Interval(0.82,1)}
-            };
+            m_intervals = p_intervals;
         }
 
         public void Encode()
         {
             Interval interval = new Interval(0,1);
-            Interval tempInterval;
 
             foreach (var c in m_code)
             {
+                Interval tempInterval;
                 m_intervals.TryGetValue(c, out tempInterval);
                 interval = Interval.UpdateInterval(interval, tempInterval);
                 TrasnformInterval(interval);
             }
-
-            // double minInterval = m_intervals.Values.Min(f => f.Size);
 
             if (interval?.Low <= 0.5 && interval.High <= 0.5)
             {
@@ -62,7 +43,7 @@ namespace DataCompression.Arithmetic.Encoder
                 m_binaryCode = m_binaryCode + "1";
             }
 
-            m_binaryCode = m_binaryCode + "00000";
+            m_binaryCode = m_binaryCode + "0000";
         }
 
         public void CompressData(string p_pathTxt, string p_pathBin, out int p_totalBits)

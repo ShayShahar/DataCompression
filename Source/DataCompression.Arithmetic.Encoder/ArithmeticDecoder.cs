@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DataCompression.Common;
 
-namespace DataCompression.Arithmetic.Decoder
+namespace DataCompression.Arithmetic
 {
     public class ArithmeticDecoder
     {
@@ -32,11 +32,11 @@ namespace DataCompression.Arithmetic.Decoder
         
         private void DecodeBinaryString()
         {
-            while (m_binary.Length > 6)
+            while (m_binary.Length > 5)
             {
-                var str = m_binary.Substring(0, 6);
+                var str = m_binary.Substring(0, 5);
 
-                double value = str.Select((t, i) => int.Parse(t.ToString())*(Math.Pow(0.5, i + 1))).Sum();
+                double value = str.Select((t, i) => int.Parse(t.ToString())*Math.Pow(0.5, i + 1)).Sum();
 
                 var valueInterval = m_intervals.Values.FirstOrDefault(f => f.High >= value && f.Low <= value);
 
@@ -64,7 +64,7 @@ namespace DataCompression.Arithmetic.Decoder
                 m_intervals = newIntervals;
             }
 
-            var str1 = m_binary.Substring(0, 6);
+            var str1 = m_binary.Substring(0, 4);
 
             double value1 = str1.Select((t, i) => int.Parse(t.ToString()) * (Math.Pow(0.5, i + 1))).Sum();
 
@@ -85,14 +85,13 @@ namespace DataCompression.Arithmetic.Decoder
 
         private void TrasnformInterval(ref Interval p_interval)
         {
-            if (p_interval?.Low <= 0.5 && p_interval.High <= 0.5)
+            if (p_interval.Low <= 0.5 && p_interval.High <= 0.5)
             {
                 m_binary = m_binary.Substring(1); //0
                 p_interval.High = p_interval.High * 2;
                 p_interval.Low = p_interval.Low * 2;
-
             }
-            else if (p_interval?.Low >= 0.5 && p_interval.High <= 1)
+            else if (p_interval.Low >= 0.5 && p_interval.High <= 1)
             {
                 m_binary = m_binary.Substring(1); //1
                 p_interval.High = (p_interval.High - 0.5) * 2;

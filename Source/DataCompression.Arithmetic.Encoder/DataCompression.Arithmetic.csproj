@@ -7,8 +7,8 @@
     <ProjectGuid>{12B3F0D7-11F9-4360-BFFC-4846BDD77E0D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DataCompression.Arithmetic.Encoder</RootNamespace>
-    <AssemblyName>DataCompression.Arithmetic.Encoder</AssemblyName>
+    <RootNamespace>DataCompression.Arithmetic</RootNamespace>
+    <AssemblyName>DataCompression.Arithmetic</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

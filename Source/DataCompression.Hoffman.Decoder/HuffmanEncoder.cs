@@ -3,7 +3,7 @@ using System.Linq;
 using System.IO;
 using DataCompression.Common;
 
-namespace DataCompression.Hoffman.Encoder
+namespace DataCompression.Hoffman
 {
     public class HuffmanEncoder
     {

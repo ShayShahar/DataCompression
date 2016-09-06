@@ -2,7 +2,7 @@
 using System.IO;
 using DataCompression.Common;
 
-namespace DataCompression.Hoffman.Decoder
+namespace DataCompression.Hoffman
 {
     public class HuffmanDecoder
     {

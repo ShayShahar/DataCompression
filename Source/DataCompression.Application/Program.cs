@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using DataCompression.Arithmetic.Decoder;
-using DataCompression.Arithmetic.Encoder;
+using DataCompression.Arithmetic;
 using DataCompression.Common;
-using HuffmanDecoder = DataCompression.Hoffman.Decoder.HuffmanDecoder;
-using HuffmanEncoder = DataCompression.Hoffman.Encoder.HuffmanEncoder;
+using DataCompression.Hoffman;
 
 namespace DataCompression.Application
 {
@@ -45,17 +43,22 @@ namespace DataCompression.Application
                 //HuffmanDecoder decoder = new HuffmanDecoder(encoder.CodedTree);
                 //decoder.DecodeBinFile(s_savePathBin, totalBits, s_savePathOutput);
 
-
                 var intervals = new Dictionary<char, Interval>
-            {
-                {'1', new Interval(0, 0.8)}, {'2', new Interval(0.8,0.82)},
-                {'3', new Interval(0.82,1)}
-            };
+                {
+                    {'1', new Interval(0, 0.1)}, {'2', new Interval(0.1,0.2)},
+                    {'3', new Interval(0.2,0.3)}, {'4', new Interval(0.3,0.4)},
+                    {'5', new Interval(0.4,0.5)}, {'6', new Interval(0.5,0.6)},
+                    {'7', new Interval(0.6,0.7)}, {'8', new Interval(0.7,0.8)},
+                    {'9', new Interval(0.8,0.9)}, {'0', new Interval(0.9,1)}
+                };
 
-                var encoder = new ArithmeticEncoder(code, alphabet);
+
+                var encoder = new ArithmeticEncoder(code, alphabet, intervals);
                 encoder.Encode();
                 int totalBits;
                 encoder.CompressData(s_savePathText,s_savePathBin, out totalBits);
+
+
 
                 var decoder = new ArithmeticDecoder(intervals, encoder.m_binaryCode);
                 decoder.DecodeTxtFile();
