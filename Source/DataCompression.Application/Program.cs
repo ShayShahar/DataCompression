@@ -58,8 +58,6 @@ namespace DataCompression.Application
                 int totalBits;
                 encoder.CompressData(s_savePathText,s_savePathBin, out totalBits);
 
-
-
                 var decoder = new ArithmeticDecoder(intervals, encoder.m_binaryCode);
                 decoder.DecodeTxtFile();
 

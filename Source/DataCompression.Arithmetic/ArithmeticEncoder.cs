@@ -30,7 +30,7 @@ namespace DataCompression.Arithmetic
                 Interval tempInterval;
                 m_intervals.TryGetValue(c, out tempInterval);
                 interval = Interval.UpdateInterval(interval, tempInterval);
-                TrasnformInterval(interval);
+                TrasnformInterval(ref interval);
             }
 
             if (interval?.Low <= 0.5 && interval.High <= 0.5)
@@ -57,7 +57,7 @@ namespace DataCompression.Arithmetic
         }
 
 
-        private void TrasnformInterval(Interval p_interval)
+        private void TrasnformInterval(ref Interval p_interval)
         {
             if (p_interval?.Low <= 0.5 && p_interval.High <= 0.5)
             {
@@ -77,7 +77,7 @@ namespace DataCompression.Arithmetic
                 return;
             }
 
-            TrasnformInterval(p_interval);
+            TrasnformInterval(ref p_interval);
         }
 
         
