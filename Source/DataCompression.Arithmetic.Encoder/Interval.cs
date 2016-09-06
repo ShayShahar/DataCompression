@@ -23,7 +23,7 @@
             newInterval.Low = p_intervalCurrent.Low + (p_intervalCurrent.High - p_intervalCurrent.Low) * p_newCharacter.Low;
             newInterval.High = p_intervalCurrent.Low + (p_intervalCurrent.High - p_intervalCurrent.Low) * p_newCharacter.High;
 
-            return newInterval;
+            return newInterval; 
         }
 
         public static void UpdateCurrentInterval(Interval p_intervalCurrent, Interval p_newCharacter)

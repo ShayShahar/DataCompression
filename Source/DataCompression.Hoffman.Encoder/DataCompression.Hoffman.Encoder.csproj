@@ -57,9 +57,9 @@
       <Project>{cafe57df-2089-41ef-8858-83a507f0ebb3}</Project>
       <Name>DataCompression.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataCompression.Hoffman.Decoder\DataCompression.Hoffman.Decoder.csproj">
+    <ProjectReference Include="..\DataCompression.Hoffman.Decoder\DataCompression.Hoffman.csproj">
       <Project>{c66014f9-2ef5-4995-9613-1b99e55828de}</Project>
-      <Name>DataCompression.Hoffman.Decoder</Name>
+      <Name>DataCompression.Hoffman</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

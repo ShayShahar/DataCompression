@@ -49,8 +49,6 @@
     <Compile Include="Alphabet.cs" />
     <Compile Include="BinaryInputStream.cs" />
     <Compile Include="BinaryOutputStream.cs" />
-    <Compile Include="Interval.cs" />
-    <Compile Include="TreeNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

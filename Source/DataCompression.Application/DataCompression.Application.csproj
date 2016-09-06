@@ -50,25 +50,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataCompression.Arithmetic.Decoder\DataCompression.Arithmetic.Decoder.csproj">
-      <Project>{1bb68eda-8251-401f-999b-7f4f60d68f10}</Project>
-      <Name>DataCompression.Arithmetic.Decoder</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DataCompression.Arithmetic.Encoder\DataCompression.Arithmetic.Encoder.csproj">
+    <ProjectReference Include="..\DataCompression.Arithmetic.Encoder\DataCompression.Arithmetic.csproj">
       <Project>{12b3f0d7-11f9-4360-bffc-4846bdd77e0d}</Project>
-      <Name>DataCompression.Arithmetic.Encoder</Name>
+      <Name>DataCompression.Arithmetic</Name>
     </ProjectReference>
     <ProjectReference Include="..\DataCompression.Hoffman.Common\DataCompression.Common.csproj">
       <Project>{cafe57df-2089-41ef-8858-83a507f0ebb3}</Project>
       <Name>DataCompression.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataCompression.Hoffman.Decoder\DataCompression.Hoffman.Decoder.csproj">
+    <ProjectReference Include="..\DataCompression.Hoffman.Decoder\DataCompression.Hoffman.csproj">
       <Project>{c66014f9-2ef5-4995-9613-1b99e55828de}</Project>
-      <Name>DataCompression.Hoffman.Decoder</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DataCompression.Hoffman.Encoder\DataCompression.Hoffman.Encoder.csproj">
-      <Project>{4ba8508b-fe50-42a4-aeca-4c4bc477bbe7}</Project>
-      <Name>DataCompression.Hoffman.Encoder</Name>
+      <Name>DataCompression.Hoffman</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
