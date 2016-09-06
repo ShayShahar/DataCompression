@@ -1,5 +1,5 @@
 ﻿
-namespace DataCompression.Common
+namespace DataCompression.Hoffman
 {
     public class TreeNode
     {

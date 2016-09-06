@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4BA8508B-FE50-42A4-AECA-4C4BC477BBE7}</ProjectGuid>
+    <ProjectGuid>{12B3F0D7-11F9-4360-BFFC-4846BDD77E0D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DataCompression.Hoffman.Encoder</RootNamespace>
-    <AssemblyName>DataCompression.Hoffman.Encoder</AssemblyName>
+    <RootNamespace>DataCompression.Arithmetic</RootNamespace>
+    <AssemblyName>DataCompression.Arithmetic</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -46,20 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HuffmanEncoder.cs" />
+    <Compile Include="ArithmeticDecoder.cs" />
+    <Compile Include="ArithmeticEncoder.cs" />
+    <Compile Include="Interval.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataCompression.Hoffman.Common\DataCompression.Common.csproj">
+    <ProjectReference Include="..\DataCompression.Common\DataCompression.Common.csproj">
       <Project>{cafe57df-2089-41ef-8858-83a507f0ebb3}</Project>
       <Name>DataCompression.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DataCompression.Hoffman.Decoder\DataCompression.Hoffman.csproj">
-      <Project>{c66014f9-2ef5-4995-9613-1b99e55828de}</Project>
-      <Name>DataCompression.Hoffman</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

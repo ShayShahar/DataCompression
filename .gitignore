@@ -11,3 +11,11 @@ Source/DataCompression.Hoffman.Common/bin/
 Source/DataCompression.Hoffman.Common/obj/
 Source/DataCompression.Application/obj/
 Source/DataCompression.Application/bin/
+Source/DataCompression.Arithmetic/bin/
+Source/DataCompression.Arithmetic/obj/
+Source/DataCompression.Huffman/bin/
+Source/DataCompression.Hufman/obj/
+Source/DataCompression.Common/bin/
+Source/DataCompression.Common/obj/
+Source/DataCompression.Hoffman/obj/
+Source/DataCompression.Hoffman/bin

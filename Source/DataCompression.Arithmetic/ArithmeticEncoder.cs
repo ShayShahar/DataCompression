@@ -6,7 +6,6 @@ namespace DataCompression.Arithmetic
 {
     public class ArithmeticEncoder
     {
-
         private int m_charNum;
         private readonly string m_code;
         private readonly Alphabet m_alphabet;

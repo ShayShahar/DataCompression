@@ -50,15 +50,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataCompression.Arithmetic.Encoder\DataCompression.Arithmetic.csproj">
+    <ProjectReference Include="..\DataCompression.Arithmetic\DataCompression.Arithmetic.csproj">
       <Project>{12b3f0d7-11f9-4360-bffc-4846bdd77e0d}</Project>
       <Name>DataCompression.Arithmetic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataCompression.Hoffman.Common\DataCompression.Common.csproj">
+    <ProjectReference Include="..\DataCompression.Common\DataCompression.Common.csproj">
       <Project>{cafe57df-2089-41ef-8858-83a507f0ebb3}</Project>
       <Name>DataCompression.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataCompression.Hoffman.Decoder\DataCompression.Hoffman.csproj">
+    <ProjectReference Include="..\DataCompression.Hoffman\DataCompression.Hoffman.csproj">
       <Project>{c66014f9-2ef5-4995-9613-1b99e55828de}</Project>
       <Name>DataCompression.Hoffman</Name>
     </ProjectReference>
