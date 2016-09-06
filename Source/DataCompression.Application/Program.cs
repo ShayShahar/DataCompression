@@ -53,12 +53,12 @@ namespace DataCompression.Application
                 };
 
 
-                var encoder = new ArithmeticEncoder(code, alphabet, intervals);
+                var encoder = new ArithmeticEncoder(code, intervals);
                 encoder.Encode();
                 int totalBits;
                 encoder.CompressData(s_savePathText,s_savePathBin, out totalBits);
 
-                var decoder = new ArithmeticDecoder(intervals, encoder.m_binaryCode);
+                var decoder = new ArithmeticDecoder(intervals, encoder.BinaryCode);
                 decoder.DecodeTxtFile();
 
 
