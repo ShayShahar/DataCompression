@@ -9,6 +9,7 @@ namespace DataCompression.Arithmetic
         private int m_charNum;
         private readonly string m_code;
         private Dictionary<char, Interval> m_intervals;
+        private int m_scale3;
 
         public string BinaryCode { get; private set;}
 
@@ -18,6 +19,7 @@ namespace DataCompression.Arithmetic
             m_charNum = p_code.Length;
             m_code = p_code;
             m_intervals = p_intervals;
+            m_scale3 = 0;
         }
 
         public void Encode()
@@ -41,7 +43,7 @@ namespace DataCompression.Arithmetic
                 BinaryCode = BinaryCode + "1";
             }
 
-            BinaryCode = BinaryCode + "0000";
+            BinaryCode = BinaryCode + "000";
         }
 
         public void CompressData(string p_pathTxt, string p_pathBin, out int p_totalBits)
@@ -64,16 +66,39 @@ namespace DataCompression.Arithmetic
                 p_interval.High = p_interval.High * 2;
                 p_interval.Low = p_interval.Low * 2;
 
+                while (m_scale3 != 0)
+                {
+                    m_scale3 --;
+                    BinaryCode = BinaryCode + "1";
+                }
+
             }
             else if (p_interval?.Low >= 0.5 && p_interval.High <= 1)
             {
                 BinaryCode = BinaryCode + "1";
                 p_interval.High = (p_interval.High - 0.5) * 2;
                 p_interval.Low = (p_interval.Low - 0.5) * 2;
+
+
+                while (m_scale3 != 0)
+                {
+                    m_scale3--;
+                    BinaryCode = BinaryCode + "0";
+                }
+
             }
             else
             {
-                return;
+                if (p_interval?.Low >= 0.25 && p_interval.High <= 0.75)
+                {
+                    m_scale3++;
+                    p_interval.High = (p_interval.High - 0.25)*2;
+                    p_interval.Low = (p_interval.Low - 0.25)*2;
+                }
+                else
+                {
+                    return;
+                }
             }
 
             TrasnformInterval(ref p_interval);

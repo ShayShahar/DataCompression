@@ -60,8 +60,6 @@ namespace DataCompression.Application
 
                 var decoder = new ArithmeticDecoder(intervals, encoder.BinaryCode);
                 decoder.DecodeTxtFile();
-
-
             }
             catch (FileNotFoundException)
             {

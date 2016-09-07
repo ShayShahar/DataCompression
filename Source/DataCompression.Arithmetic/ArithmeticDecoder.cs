@@ -10,7 +10,7 @@ namespace DataCompression.Arithmetic
         private Dictionary<char, Interval> m_intervals;
         private string m_binary;
         private string m_output;
-        private readonly Dictionary<char, Interval> m_originalIntervals; 
+        private readonly Dictionary<char, Interval> m_originalIntervals;
 
         public ArithmeticDecoder(Dictionary<char, Interval> p_intervals, string p_binary)
         {
@@ -32,9 +32,9 @@ namespace DataCompression.Arithmetic
         
         private void DecodeBinaryString()
         {
-            while (m_binary.Length > 5)
+            while (m_binary.Length > 4)
             {
-                var str = m_binary.Substring(0, 5);
+                var str = m_binary.Substring(0, 4);
 
                 double value = str.Select((t, i) => int.Parse(t.ToString())*Math.Pow(0.5, i + 1)).Sum();
 
@@ -52,8 +52,6 @@ namespace DataCompression.Arithmetic
                 TrasnformInterval(ref valueInterval);
 
                 Dictionary<char, Interval> newIntervals = new Dictionary<char, Interval>();
-
-                int j = 0;
 
                 foreach (var c in m_originalIntervals)
                 {
@@ -99,7 +97,17 @@ namespace DataCompression.Arithmetic
             }
             else
             {
-                return;
+                if (p_interval?.Low >= 0.25 && p_interval.High <= 0.75)
+                {
+                    p_interval.High = (p_interval.High - 0.25) * 2;
+                    p_interval.Low = (p_interval.Low - 0.25) * 2;
+                    //TODO: check this! @Latifa
+                    m_binary = m_binary.Substring(1);
+                }
+                else
+                {
+                    return;
+                }
             }
 
             TrasnformInterval(ref p_interval);
