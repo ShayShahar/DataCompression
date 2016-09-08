@@ -43,23 +43,27 @@ namespace DataCompression.Application
                 //HuffmanDecoder decoder = new HuffmanDecoder(encoder.CodedTree);
                 //decoder.DecodeBinFile(s_savePathBin, totalBits, s_savePathOutput);
 
-                var intervals = new Dictionary<char, Interval>
-                {
-                    {'1', new Interval(0, 0.1)}, {'2', new Interval(0.1,0.2)},
-                    {'3', new Interval(0.2,0.3)}, {'4', new Interval(0.3,0.4)},
-                    {'5', new Interval(0.4,0.5)}, {'6', new Interval(0.5,0.6)},
-                    {'7', new Interval(0.6,0.7)}, {'8', new Interval(0.7,0.8)},
-                    {'9', new Interval(0.8,0.9)}, {'0', new Interval(0.9,1)}
-                };
+                //var intervals = new Dictionary<char, Interval>
+                //{
+                //    {'1', new Interval(0, 0.1)}, {'2', new Interval(0.1,0.2)},
+                //    {'3', new Interval(0.2,0.3)}, {'4', new Interval(0.3,0.4)},
+                //    {'5', new Interval(0.4,0.5)}, {'6', new Interval(0.5,0.6)},
+                //    {'7', new Interval(0.6,0.7)}, {'8', new Interval(0.7,0.8)},
+                //    {'9', new Interval(0.8,0.9)}, {'0', new Interval(0.9,1)}
+                //};
 
 
-                var encoder = new ArithmeticEncoder(code, intervals);
+                //var encoder = new ArithmeticEncoder(code, intervals);
+                //encoder.Encode();
+                //int totalBits;
+                //encoder.CompressData(s_savePathText,s_savePathBin, out totalBits);
+
+                //var decoder = new ArithmeticDecoder(intervals, encoder.BinaryCode);
+                //decoder.DecodeTxtFile();
+
+                var encoder = new Encoder(code, alphabet);
                 encoder.Encode();
-                int totalBits;
-                encoder.CompressData(s_savePathText,s_savePathBin, out totalBits);
 
-                var decoder = new ArithmeticDecoder(intervals, encoder.BinaryCode);
-                decoder.DecodeTxtFile();
             }
             catch (FileNotFoundException)
             {

@@ -10,6 +10,7 @@ namespace DataCompression.Arithmetic
         private readonly string m_code;
         private Dictionary<char, Interval> m_intervals;
         private int m_scale3;
+        
 
         public string BinaryCode { get; private set;}
 
