@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace DataCompression.Arithmetic
 {
-    internal class CharacterInformation
+    public class CharacterInformation
     {
         internal char Letter { get; set; }
-        internal int Count { get; set; }
-        internal int CumCount { get; set; }
-        internal int Index { get; set; }
+        internal int CumCountLow { get; set; }
+        internal int CumCountHigh { get; set; }
     }
 }

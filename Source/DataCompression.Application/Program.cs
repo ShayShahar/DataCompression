@@ -4,6 +4,7 @@ using System.IO;
 using DataCompression.Arithmetic;
 using DataCompression.Common;
 using DataCompression.Hoffman;
+using Encoder = DataCompression.Hoffman.Encoder;
 
 namespace DataCompression.Application
 {
@@ -31,38 +32,38 @@ namespace DataCompression.Application
                     throw new InvalidDataException();
                 }
 
-                //var encoder = new HuffmanEncoder(code, alphabet);
-                //encoder.Init();
-                //encoder.StaticProbabilities();
-                //encoder.Encode();
-                //int totalBits;
-                //encoder.CompressData(s_savePathText, s_savePathBin, out totalBits);
-
-                //Console.WriteLine("Text encoded. Output file is located at: {0}, {1}", s_savePathText, s_savePathBin);
-
-                //HuffmanDecoder decoder = new HuffmanDecoder(encoder.CodedTree);
-                //decoder.DecodeBinFile(s_savePathBin, totalBits, s_savePathOutput);
-
-                //var intervals = new Dictionary<char, Interval>
-                //{
-                //    {'1', new Interval(0, 0.1)}, {'2', new Interval(0.1,0.2)},
-                //    {'3', new Interval(0.2,0.3)}, {'4', new Interval(0.3,0.4)},
-                //    {'5', new Interval(0.4,0.5)}, {'6', new Interval(0.5,0.6)},
-                //    {'7', new Interval(0.6,0.7)}, {'8', new Interval(0.7,0.8)},
-                //    {'9', new Interval(0.8,0.9)}, {'0', new Interval(0.9,1)}
-                //};
-
-
-                //var encoder = new ArithmeticEncoder(code, intervals);
-                //encoder.Encode();
-                //int totalBits;
-                //encoder.CompressData(s_savePathText,s_savePathBin, out totalBits);
-
-                //var decoder = new ArithmeticDecoder(intervals, encoder.BinaryCode);
-                //decoder.DecodeTxtFile();
-
                 var encoder = new Encoder(code, alphabet);
+                encoder.Init();
+                encoder.StaticProbabilities();
                 encoder.Encode();
+                int totalBits;
+                encoder.CompressData(s_savePathText, s_savePathBin, out totalBits);
+
+                Console.WriteLine("Text encoded using Huffman Encoder. Output file is located at: {0}, {1}", s_savePathText, s_savePathBin);
+
+                var intervals = new Dictionary<char, Interval>
+                {
+                    {'1', new Interval(0, 0.1)}, {'2', new Interval(0.1,0.2)},
+                    {'3', new Interval(0.2,0.3)}, {'4', new Interval(0.3,0.4)},
+                    {'5', new Interval(0.4,0.5)}, {'6', new Interval(0.5,0.6)},
+                    {'7', new Interval(0.6,0.7)}, {'8', new Interval(0.7,0.8)},
+                    {'9', new Interval(0.8,0.9)}, {'0', new Interval(0.9,1)}
+                };
+
+
+                /* //Encode with arithmetic coding
+                int totalBits;
+                var encoder = new Arithmetic.Encoder(code, alphabet);
+                encoder.Encode();
+                encoder.CompressData(s_savePathText, s_savePathBin, out totalBits);
+                */
+
+                Console.WriteLine("Arithmetic decoder started.");
+                var decoder = new Arithmetic.Decoder(alphabet);
+                decoder.DecodeBinFile(s_savePathBin, totalBits, s_savePathOutput);
+
+                Console.WriteLine("Text encoded using Arithmetic Decoder. Output file is located at: {0}", s_savePathOutput);
+
 
             }
             catch (FileNotFoundException)
